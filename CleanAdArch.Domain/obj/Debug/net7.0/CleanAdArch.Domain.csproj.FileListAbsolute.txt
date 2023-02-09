@@ -1,0 +1,14 @@
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\bin\Debug\net7.0\CleanAdArch.Domain.deps.json
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\bin\Debug\net7.0\CleanAdArch.Domain.runtimeconfig.json
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\bin\Debug\net7.0\CleanAdArch.Domain.dll
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\bin\Debug\net7.0\CleanAdArch.Domain.pdb
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.csproj.AssemblyReference.cache
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.AssemblyInfoInputs.cache
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.AssemblyInfo.cs
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.csproj.CoreCompileInputs.cache
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.dll
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\refint\CleanAdArch.Domain.dll
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.pdb
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\CleanAdArch.Domain.genruntimeconfig.cache
+C:\Users\komuk\RiderProjects\CleanAdArch\CleanAdArch.Domain\obj\Debug\net7.0\ref\CleanAdArch.Domain.dll
