@@ -5,7 +5,8 @@ using CleanAdArch.Infrastructure.DepInj;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddControllers();
+builder.Services.AddCors();
+// builder.Services.AddControllers();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddPresentation(builder.Configuration);
 builder.Services.AddApplication();
@@ -30,6 +31,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseRateLimiter();
 app.MapControllers()
     .RequireRateLimiting("jwt-token");
 
@@ -42,6 +45,5 @@ if (Environment.GetEnvironmentVariable("EnabledLogging") == "true")
         await next.Invoke(context);
     });
 }
-app.MapControllers();
 
 app.Run();

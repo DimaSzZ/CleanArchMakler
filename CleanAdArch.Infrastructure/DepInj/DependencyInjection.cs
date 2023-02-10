@@ -56,7 +56,7 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var settings = new SupabaseOptions();
+        var settings = new SupabaseSettings();
         configuration.Bind(nameof(SupabaseSettings), settings);
         services.AddSingleton(settings);
         services.AddSingleton<ISupabaseStorage, SupabaseStorage>();

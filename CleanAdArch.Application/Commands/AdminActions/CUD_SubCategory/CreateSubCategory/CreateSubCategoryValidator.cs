@@ -4,7 +4,7 @@ namespace CleanAdArch.Application.Commands.AdminActions.CUD_SubCategory.CreateSu
 
 public class CreateSubCategoryValidator : AbstractValidator<CreateSubCategoryCommand>
 {
-    private CreateSubCategoryValidator()
+    public CreateSubCategoryValidator()
     {
         RuleFor(command => command.SubCategory).NotNull().MaximumLength(40);
     }

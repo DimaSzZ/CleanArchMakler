@@ -14,10 +14,12 @@ public class UpdateAdHandler : IRequestHandler<UpdateAdCommand>
     private readonly IFileUtils _fileUtils;
     private readonly ISupabaseStorage _storage;
 
-    public UpdateAdHandler(IUserAccessor userAccessor, IAdsRepository adsRepository)
+    public UpdateAdHandler(IUserAccessor userAccessor, IAdsRepository adsRepository, IFileUtils fileUtils, ISupabaseStorage storage)
     {
         _userAccessor = userAccessor;
         _adsRepository = adsRepository;
+        _fileUtils = fileUtils;
+        _storage = storage;
     }
 
     public async Task<Unit> Handle(UpdateAdCommand request, CancellationToken cancellationToken)

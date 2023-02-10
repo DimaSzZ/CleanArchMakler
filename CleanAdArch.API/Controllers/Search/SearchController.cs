@@ -8,6 +8,7 @@ namespace CleanAdArch.API.Controllers.Search;
 [Route("api/search")]
 public class SearchController : BaseController
 {
+    [HttpPost]
     public async Task<IActionResult> Search(SearchQuery query,CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(query,cancellationToken);
