@@ -42,8 +42,8 @@ public static class DependencyInjection
               Enter 'Bearer' [space] and then your token in the text input below.
               \r\n\r\nExample: 'Bearer FuckingKeyY'"
             });
-            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            // var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            // options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
         });
         return services;
     }
