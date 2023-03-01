@@ -7,7 +7,7 @@ public class CreateAdValidator : AbstractValidator<CreateAdCommand>
 {
     public  CreateAdValidator()
     {
-        RuleFor(command => command.City).NotNull().MaximumLength(168).MaximumLength(1);
+        RuleFor(command => command.City).NotNull().MaximumLength(168).MinimumLength(1);
         RuleFor(command => command.Heading).NotNull().MaximumLength(50);
         RuleFor(command => command.Description).NotNull().MaximumLength(1000);
         RuleFor(command => command.Phone)

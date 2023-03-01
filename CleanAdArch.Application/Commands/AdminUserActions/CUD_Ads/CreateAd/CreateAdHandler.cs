@@ -28,13 +28,17 @@ public class CreateAdHandler : IRequestHandler<CreateAdCommand>
         var user = _userAccessor.Get();
         if (user == null)
             throw new UserDoesNotExistException();
-        var allowedExtension = _fileUtils.IsImage(request.File.Name);
-        if (!allowedExtension)
-            throw new ValidationRequestException("Images with this extension not allowed");
-        var url = await _storage.Save(request.Heading, request.File);
+        string url = "";
+        if (request.File != null)
+        {
+            var allowedExtension = _fileUtils.IsImage(request.File.Name);
+            if (!allowedExtension)
+                throw new ValidationRequestException("Images with this extension not allowed");
+            url = await _storage.Save(request.Heading, request.File);
 
-        if (url == null)
-            throw new UnexpectedErrorException();
+            if (url == null)
+                throw new UnexpectedErrorException();   
+        }
         var ad = new Ads(
             request.Heading,
             request.Description,

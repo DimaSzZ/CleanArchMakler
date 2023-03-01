@@ -33,11 +33,11 @@ public class HttpExceptionFilter : IAsyncActionFilter
         executedContext.ExceptionHandled = true;
         var fullName = executedContext
             .Exception!
-            .TargetSite!
-            .ReflectedType!
-            .DeclaringType!
-            .FullName!
-            .Split(".")
+            ?.TargetSite!
+            ?.ReflectedType!
+            ?.DeclaringType!
+            ?.FullName!
+            ?.Split(".")
             .LastOrDefault();
         var handlerName = fullName == null ? "" : fullName.Replace("Handler", "");
         await _logger.LogError(executedContext.Exception!, handlerName);

@@ -32,12 +32,12 @@ public class UpdateAdHandler : IRequestHandler<UpdateAdCommand>
             if (user.Id == request.UserId){}
             else{throw new UserDoesNotAdminException();}
         }
-        var allowedExtension = _fileUtils.IsImage(request.File.Name);
-        if (!allowedExtension)
-            throw new ValidationRequestException("Images with this extension not allowed");
         var ad = await _adsRepository.OnById(request.Id,cancellationToken);
         if (request.File != null)
         {
+            var allowedExtension = _fileUtils.IsImage(request.File.Name);
+            if (!allowedExtension)
+                throw new ValidationRequestException("Images with this extension not allowed");
             var url = await _storage.Save(request.Heading, request.File);
             if (url == null)
                 throw new UnexpectedErrorException();

@@ -8,7 +8,7 @@ namespace CleanAdArch.API.Controllers.AdminActions.CRUD_SubCategory;
 
 [ApiController]
 [Authorize]
-[Microsoft.AspNetCore.Components.Route("api/admin/sub-category")]
+[Route("api/admin/sub-category")]
 public class AdminSubCategoryController : BaseController
 {
     [HttpPost("append")]
@@ -31,9 +31,9 @@ public class AdminSubCategoryController : BaseController
         await Mediator.Send(command, cancellationToken);
         return Ok("Subcategory updated");
     }
-    
+    [AllowAnonymous]
     [HttpGet("get-all")]
-    public async Task<IActionResult> SubCategoryDelete(GetSubCategoriesQuery query, CancellationToken cancellationToken)
+    public async Task<IActionResult> SubCategoryGetAll(GetSubCategoriesQuery query, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(query, cancellationToken);
         return Ok(response);

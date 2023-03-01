@@ -18,7 +18,6 @@ using CleanAdArch.Infrastructure.Utils.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Supabase;
 
 
 namespace CleanAdArch.Infrastructure.DepInj;

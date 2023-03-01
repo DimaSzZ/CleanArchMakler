@@ -23,7 +23,7 @@ public class CreateCityHandler : IRequestHandler<CreateCityCommand>
         if (user.Admin != true)
             throw new UserDoesNotAdminException();
         var isExistCity = await _cityRepository.IsExistCity(request.City, cancellationToken);
-        if (!isExistCity)
+        if (isExistCity)
             throw new EntityExistsException();
         var newCity = new City(request.City);
         await _cityRepository.Save(newCity,cancellationToken);

@@ -1,10 +1,13 @@
-﻿using System.Reflection;
-using System.Text;
+﻿using System.Text;
+using System.Threading.RateLimiting;
 using CleanAdArch.API.Filters;
 using CleanAdArch.API.Swagger;
 using CleanAdArch.Domain.Interface.Repositories;
+using CleanAdArch.Domain.Settings.RateLimit;
 using CleanAdArch.Domain.Settings.Utils.Tokens;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
@@ -20,8 +23,40 @@ public static class DependencyInjection
         services.AddAuth(configuration);
         services.AddControllersWithConfig();
         services.AddSwagger();
+        services.AddRateLimiting(configuration);
         return services;
     }
+    private static IServiceCollection AddRateLimiting(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        var rateLimitSettings = new RateLimitSettings();
+        configuration.GetSection(nameof(RateLimitSettings)).Bind(rateLimitSettings);
+
+        services.AddRateLimiter(limiterOptions =>
+        {
+            limiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+            limiterOptions.AddPolicy(policyName: "jwt-token", partitioner: httpContext =>
+            {
+                var accessToken = httpContext.Features.Get<IAuthenticateResultFeature>()?
+                                      .AuthenticateResult?.Properties?.GetTokenValue("access_token")?.ToString()
+                                  ?? string.Empty;
+                return RateLimitPartition.GetFixedWindowLimiter(
+                    !StringValues.IsNullOrEmpty(accessToken) ? accessToken : "Anon", _ =>
+                        new FixedWindowRateLimiterOptions
+                        {
+                            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                            QueueLimit = rateLimitSettings.QueueLimit,
+                            AutoReplenishment = rateLimitSettings.AutoReplenishment,
+                            PermitLimit = rateLimitSettings.PermitLimit,
+                            Window = TimeSpan.FromSeconds(rateLimitSettings.Window)
+                        });
+            });
+        });
+        return services;
+    }
+    
     private static IServiceCollection AddSwagger(
         this IServiceCollection services
     )

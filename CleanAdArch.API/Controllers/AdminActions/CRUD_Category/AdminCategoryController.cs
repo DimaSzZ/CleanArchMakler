@@ -12,29 +12,29 @@ namespace CleanAdArch.API.Controllers.AdminActions.CRUD_Category;
 [Route("api/admin/category")]
 public class AdminCategoryController: BaseController
 {
-    [HttpPost("append/{category}")]
-    public async Task<IActionResult> CategoryAppend(string category, CancellationToken cancellationToken)
+    [HttpPost("append")]
+    public async Task<IActionResult> CategoryAppend(CreateCategoryCommand category, CancellationToken cancellationToken)
     {
-        var command = new CreateCategoryCommand(category);
-        await Mediator.Send(command, cancellationToken);
-        return Ok("Ads added");
+        await Mediator.Send(category, cancellationToken);
+        return Ok("Category added");
     }
     [HttpDelete("delete")]
     public async Task<IActionResult> CategoryDelete(DeleteCategoryCommand command, CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
-        return Ok("Ads deleted");
+        return Ok("Category deleted");
     }
     [HttpPut("update")]
     public async Task<IActionResult> CategoryUpdate(UpdateCategoryCommand command, CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
-        return Ok("Ads updated");
+        return Ok("Category updated");
     }
+    [AllowAnonymous]
     [HttpGet("get-all")]
-    public async Task<IActionResult> CategoryAppend(GetCategoriesQuery query, CancellationToken cancellationToken)
+    public async Task<IActionResult> CategoryAppend(CancellationToken cancellationToken)
     {
-        var response = await Mediator.Send(query , cancellationToken);
+        var response = await Mediator.Send(new GetCategoriesQuery() , cancellationToken);
         return Ok(response);
     }
 }

@@ -8,7 +8,7 @@ public class UpdateAdValidator : AbstractValidator<UpdateAdCommand>
     public UpdateAdValidator()
     {
         RuleFor(command => command.Id).NotNull();
-        RuleFor(command => command.City).NotNull().MaximumLength(168).MaximumLength(1);
+        RuleFor(command => command.City).NotNull().MaximumLength(168).MinimumLength(1);
         RuleFor(command => command.Heading).NotNull().MaximumLength(50);
         RuleFor(command => command.Description).NotNull().MaximumLength(1000);
         RuleFor(command => command.Price).NotNull();
