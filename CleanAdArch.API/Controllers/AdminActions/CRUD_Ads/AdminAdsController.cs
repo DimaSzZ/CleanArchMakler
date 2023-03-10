@@ -1,4 +1,6 @@
 ﻿using CleanAdArch.Application.Commands.AdminUserActions.CUD_Ads.CreateAd;
+using CleanAdArch.Application.Commands.AdminUserActions.CUD_Ads.DeleteAd;
+using CleanAdArch.Application.Commands.AdminUserActions.CUD_Ads.UpdateAd;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,13 +18,13 @@ public class AdminAdsController : BaseController
         return Ok("Ads added");
     }
     [HttpDelete("delete")]
-    public async Task<IActionResult> AddDelete(Guid command, CancellationToken cancellationToken)
+    public async Task<IActionResult> AddDelete(DeleteAdCommand command, CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
         return Ok("Ads deleted");
     }
     [HttpPut("update")]
-    public async Task<IActionResult> AddUpdate(Guid command, CancellationToken cancellationToken)
+    public async Task<IActionResult> AddUpdate(UpdateAdCommand command, CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
         return Ok("Ads updated");

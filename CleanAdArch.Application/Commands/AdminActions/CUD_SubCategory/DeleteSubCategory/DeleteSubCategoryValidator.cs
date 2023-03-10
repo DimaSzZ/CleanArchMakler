@@ -6,7 +6,6 @@ public class DeleteSubCategoryValidator : AbstractValidator<DeleteSubCategoryCom
 {
     public DeleteSubCategoryValidator()
     {
-        RuleFor(command => command.categoryId).NotNull();
-        RuleFor(command => command.subCategoryId).NotNull();
+        RuleFor(command => command.SubCategoryId).NotNull();
     }
 }

@@ -21,10 +21,9 @@ public class UpdateCategoryHandler : IRequestHandler<UpdateCategoryCommand>
             throw new UserDoesNotExistException();
         if (user.Admin != true)
             throw new UserDoesNotAdminException();
-        var isExistCat = await _categoryRepository.IsExistCategory(request.Category, cancellationToken);
-        if (!isExistCat)
-            throw new EntityExistsException();
         var category = await _categoryRepository.OnById(request.Id, cancellationToken);
+        if (category == null)
+            throw new EntityExistsException();
         category.CategoryProduct = request.Category;
         await _categoryRepository.Save(category,cancellationToken);
         return Unit.Value;

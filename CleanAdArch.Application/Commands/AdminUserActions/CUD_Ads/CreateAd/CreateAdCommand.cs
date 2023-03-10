@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
-using Supabase.Gotrue;
 
 namespace CleanAdArch.Application.Commands.AdminUserActions.CUD_Ads.CreateAd;
 
@@ -12,6 +11,6 @@ public record CreateAdCommand(
     string? Phone,
     double Price,
     Guid CategoryId,
-    Guid SubCategoryId,
+    Guid? SubCategoryId,
     Guid CityId 
 ): IRequest;

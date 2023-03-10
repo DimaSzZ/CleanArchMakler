@@ -22,10 +22,9 @@ public class UpdateCityHandler : IRequestHandler<UpdateCityCommand>
             throw new UserDoesNotExistException();
         if (user.Admin != true)
             throw new UserDoesNotAdminException();
-        var isExistCat = await _cityRepository.IsExistCity(request.City, cancellationToken);
-        if (!isExistCat)
-            throw new EntityExistsException();
         var city = await _cityRepository.OneById(request.Id, cancellationToken);
+        if(city == null)
+            throw new EntityExistsException();
         city.CityName = request.City;
         await _cityRepository.Save(city,cancellationToken);
         return Unit.Value;

@@ -15,5 +15,5 @@ public record UpdateAdCommand(
     Guid SubCategoryId,
     Guid CityId,
     Guid UserId,
-    IFormFile File
+    IFormFile? File
     ) : IRequest;

@@ -5,8 +5,8 @@ namespace CleanAdArch.Domain.Models.Ads;
 public class Ads
 {
 
-    public Ads(string heading,string description, string phone, double price,string picture,
-        Guid categoryId,Guid subCategoryId ,Guid cityId,DateTime dateOfCreate,Guid userId)
+    public Ads(string heading,string? description, string? phone, double price,string? picture,
+        Guid categoryId,Guid? subCategoryId ,Guid cityId,DateTime dateOfCreate,Guid userId)
     {
         Id = Guid.NewGuid();
         CityId = cityId;
@@ -30,7 +30,7 @@ public class Ads
     public DateTime DateOfCreate { get; set; }
     public string? Picture { get; set; }
     public Guid CategoryId { get; set; }
-    public Guid SubCategoryId { get; set; }
+    public Guid ?SubCategoryId { get; set; }
     public Guid CityId { get; set; }
     public Guid UserId { get; set; }
     
@@ -44,6 +44,8 @@ public class Ads
    {
        return new AdsShort(
            Id,
+           UserId,
+           Description,
            Heading,
            Picture,
            Phone,

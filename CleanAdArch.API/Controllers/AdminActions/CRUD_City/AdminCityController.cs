@@ -26,7 +26,7 @@ public class AdminCityController : BaseController
         return Ok("City deleted");
     }
     [HttpPut("update")]
-    public async Task<IActionResult> CityUpdate(UpdateCityCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> CityUpdate([FromBody] UpdateCityCommand command, CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
         return Ok("City updated");

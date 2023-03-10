@@ -28,7 +28,7 @@ public class CreateAdHandler : IRequestHandler<CreateAdCommand>
         var user = _userAccessor.Get();
         if (user == null)
             throw new UserDoesNotExistException();
-        string url = "";
+        string? url = "";
         if (request.File != null)
         {
             var allowedExtension = _fileUtils.IsImage(request.File.Name);

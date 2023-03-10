@@ -1,4 +1,5 @@
 ﻿using CleanAdArch.Application.Commands.AdminActions.CUD_SubCategory.CreateSubCategory;
+using CleanAdArch.Application.Commands.AdminActions.CUD_SubCategory.DeleteSubCategory;
 using CleanAdArch.Application.Commands.AdminActions.CUD_SubCategory.UpdateSubCategory;
 using CleanAdArch.Application.Queries.GetSubCategories;
 using Microsoft.AspNetCore.Authorization;
@@ -12,30 +13,30 @@ namespace CleanAdArch.API.Controllers.AdminActions.CRUD_SubCategory;
 public class AdminSubCategoryController : BaseController
 {
     [HttpPost("append")]
-    public async Task<IActionResult> SubCategoryAppend(CreateSubCategoryCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> SubCategoryAppend([FromBody]CreateSubCategoryCommand command, CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
         return Ok("Subcategory added");
     }
     
-    [HttpDelete("delete")]
-    public async Task<IActionResult> SubCategoryDelete(CreateSubCategoryCommand command, CancellationToken cancellationToken)
+    [HttpDelete("delete/{id:guid}")]
+    public async Task<IActionResult> SubCategoryDelete(Guid id, CancellationToken cancellationToken)
     {
-        await Mediator.Send(command, cancellationToken);
+        await Mediator.Send(new DeleteSubCategoryCommand(id), cancellationToken);
         return Ok("Subcategory deleted");
     }
     
     [HttpPut("update")]
-    public async Task<IActionResult> SubCategoryUpdate(UpdateSubCategoryCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> SubCategoryUpdate([FromBody]UpdateSubCategoryCommand command, CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
         return Ok("Subcategory updated");
     }
     [AllowAnonymous]
-    [HttpGet("get-all")]
-    public async Task<IActionResult> SubCategoryGetAll(GetSubCategoriesQuery query, CancellationToken cancellationToken)
+    [HttpGet("get-all/{id:guid}")]
+    public async Task<IActionResult> SubCategoryGetAll(Guid id, CancellationToken cancellationToken)
     {
-        var response = await Mediator.Send(query, cancellationToken);
+        var response = await Mediator.Send(new GetSubCategoriesQuery(id), cancellationToken);
         return Ok(response);
     }
 }

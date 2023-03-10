@@ -22,8 +22,8 @@ public class DeleteCategoryHandler : IRequestHandler<DeleteCategoryCommand>
             throw new UserDoesNotExistException();
         if (user.Admin != true)
             throw new UserDoesNotAdminException();
-        var isExistCat = await _categoryRepository.IsExistCategory(request.Category, cancellationToken);
-        if (!isExistCat)
+        var isExistCat = await _categoryRepository.OnById(request.Id, cancellationToken);
+        if (isExistCat == null)
             throw new EntityExistsException();
         await _categoryRepository.Delete(request.Id,cancellationToken);
         return Unit.Value;

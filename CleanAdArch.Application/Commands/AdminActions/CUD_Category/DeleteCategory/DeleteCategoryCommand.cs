@@ -2,4 +2,4 @@
 
 namespace CleanAdArch.Application.Commands.AdminActions.CUD_Category.DeleteCategory;
 
-public record DeleteCategoryCommand(Guid Id,string Category) : IRequest;
+public record DeleteCategoryCommand(Guid Id) : IRequest;

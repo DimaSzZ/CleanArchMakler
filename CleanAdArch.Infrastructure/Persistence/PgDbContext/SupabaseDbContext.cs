@@ -19,8 +19,7 @@ public class SupabaseDbContext : DbContext
     public SupabaseDbContext(DbContextOptions<SupabaseDbContext> options) : base(options)
     {
     }
-  //ЕБАНЬ БЛЯТЬ НАД КОТОРОЙ Я СИДЕЛ И СЕДЕЛИ МОИ ВОЛОСЫ 2 дня нахУЙ 
-  // dotnet ef --startup-project ..\CleanAdArch.API\CleanAdArch.API.csproj migrations add MyMigration --context SupabaseDbContext --output-dir Persistence/Migrations
+    // dotnet ef --startup-project ..\CleanAdArch.API\CleanAdArch.API.csproj migrations add MyMigration --context SupabaseDbContext --output-dir Persistence/Migrations
   // dotnet ef database update -- project .\CleanAdArch.Infrastructure.csproj
 
     public DbSet<User?> Users { get; set; } = null!;
