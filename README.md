@@ -1,5 +1,3 @@
-# SolForbTestBack
-
 ## Technologies and Architecture Approaches
 
 - .NET + C#
